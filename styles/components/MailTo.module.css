@@ -1,0 +1,8 @@
+.mailLink {
+  /* color: #fff; */
+}
+
+.mailLink:hover {
+  color: lightseagreen;
+  transition: 200ms ease-in;
+}
