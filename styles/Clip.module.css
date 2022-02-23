@@ -4,4 +4,57 @@
   min-height: 100vh;
   justify-content: center;
   align-items: center;
+  margin: 40px 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+
+.titleText {
+  font-size: 14px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.subtitleText {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.picture {
+  border-radius: 50%;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  justify-content: center;
+}
+
+.username {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gameIcon {
+  border-radius: 50%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+  margin-bottom: 10px;
 }
