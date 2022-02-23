@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useWindowDimensions = () => {
+const getIsMobile = () => {
   const [windowDimensions, setWindowDimensions] = useState({
     width: undefined,
     height: undefined,
@@ -18,7 +18,7 @@ const useWindowDimensions = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
 
-  return windowDimensions;
+  return windowDimensions.width <= 768;
 };
 
-export default useWindowDimensions;
+export default getIsMobile;

@@ -5,7 +5,7 @@ import "video.js/dist/video-js.css";
 import "@videojs/themes/dist/forest/index.css"; // Forest
 
 const VideoJS = (props) => {
-  const { options, style = {}, onReady } = props;
+  const { options, onReady } = props;
 
   const videoRef = React.useRef(null);
   const playerRef = React.useRef(null);
@@ -43,7 +43,7 @@ const VideoJS = (props) => {
   return (
     <div data-vjs-player>
       <video
-        style={style}
+        style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
         ref={videoRef}
         className="video-js vjs-theme-forest vjs-big-play-centered"
       />

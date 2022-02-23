@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { IoLogoDiscord, IoLogoReddit } from "react-icons/io5";
+import {
+  IoLogoDiscord,
+  IoLogoReddit,
+  IoMailOpenOutline,
+} from "react-icons/io5";
 
 import styles from "styles/components/layout/Footer.module.css";
 
 import PlayStore from "components/playstore";
-import useWindowDimensions from "hooks/dimensions";
+import getIsMobile from "hooks/dimensions";
 
 const Footer = () => {
-  const windowDimensions = useWindowDimensions();
+  const isMobile = getIsMobile();
 
   return (
     <footer className={styles.footer}>
       <nav className={styles.nav}>
-        <div
-          className={
-            windowDimensions.width <= 768 ? styles.gridColumn : styles.gridRow
-          }
-        >
+        <div className={isMobile ? styles.gridColumn : styles.gridRow}>
           <div className={styles.column}>
             <Link href="/legal/privacy-policy">
               <a
@@ -65,6 +65,16 @@ const Footer = () => {
               >
                 <IoLogoDiscord />
                 <span className={styles.socialText}>Discord</span>
+              </a>
+            </Link>
+            <Link href="mailto:hello@shinobi.cc">
+              <a
+                className={styles.link}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <IoMailOpenOutline />
+                <span className={styles.socialText}>Write to us ❤️</span>
               </a>
             </Link>
           </div>
