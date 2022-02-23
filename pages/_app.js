@@ -1,16 +1,17 @@
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
 
 import Header from "components/layout/Header";
 import Footer from "components/layout/Footer";
 
 import "styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   if (Component.getLayout) {
     return Component.getLayout(<Component {...pageProps} />);
   }
   return (
-    <>
+    <SessionProvider session={session}>
       <Head>
         <title>Shinobi | Shareable gaming clips</title>
         <meta
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }) {
       <Header />
       <Component {...pageProps} />
       <Footer />
-    </>
+    </SessionProvider>
   );
 }
 
