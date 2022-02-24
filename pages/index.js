@@ -5,7 +5,7 @@ import styles from "styles/Home.module.css";
 import Browse from "components/home/browse";
 import Upload from "components/home/upload";
 
-export default function Home() {
+const Home = () => {
   const [videoFile, setVideoFile] = useState();
 
   return (
@@ -17,4 +17,6 @@ export default function Home() {
       )}
     </div>
   );
-}
+};
+
+export default Home;

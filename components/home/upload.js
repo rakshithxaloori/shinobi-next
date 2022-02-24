@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
-import styles from "styles/Home.module.css";
+import styles from "styles/home/Upload.module.css";
+
+import Title from "components/clip/upload.js/title";
+import SelectGame from "components/clip/upload.js/select_game";
+
 import getIsMobile from "hooks/dimensions";
 
 // When ffmpeg packages are updated,
@@ -20,6 +24,11 @@ const Upload = ({ videoFile, setVideoFile }) => {
   const [ready, setReady] = useState();
   const [thumbnail, setThumbnail] = useState();
   const [thumbnailUrl, setThumbnailUrl] = useState();
+
+  const [title, setTitle] = useState("");
+  const [game, setGame] = useState(null);
+  const [disable, setDisable] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     loadFFmpeg();
@@ -78,6 +87,16 @@ const Upload = ({ videoFile, setVideoFile }) => {
               alt="Thumbnail"
               layout="fill"
               className={styles.image}
+            />
+          </div>
+          <div className={styles.details}>
+            <Title title={title} setTitle={setTitle} disable={disable} />
+
+            <SelectGame
+              game={game}
+              setGame={setGame}
+              disable={disable}
+              setError={setError}
             />
           </div>
         </div>

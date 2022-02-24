@@ -22,18 +22,6 @@ const Header = () => {
           !session && status === "loading" ? styles.loading : styles.loaded
         }`}
       >
-        <li>
-          <Link href="https://upload.shinobi.cc">
-            <a
-              className={styles.link}
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Create a shareable clip"
-            >
-              <IoCloudUploadOutline />
-            </a>
-          </Link>
-        </li>
         {status === "unauthenticated" && !session && (
           <li>
             <Link href="/api/auth/signin">

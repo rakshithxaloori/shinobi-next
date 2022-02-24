@@ -1,0 +1,23 @@
+.browse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.browse:hover {
+  cursor: pointer;
+}
+
+.dragDrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64vw;
+  aspect-ratio: 16/9;
+  border-radius: 20px;
+  border-style: dashed;
+}
+
+.videoInput {
+  display: none;
+}

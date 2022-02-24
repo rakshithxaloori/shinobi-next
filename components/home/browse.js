@@ -1,6 +1,6 @@
 import { useDropzone } from "react-dropzone";
 
-import styles from "styles/Home.module.css";
+import styles from "styles/home/Browse.module.css";
 
 const Browse = ({ setVideoFile }) => {
   const onDrop = (files) => {
@@ -21,7 +21,7 @@ const Browse = ({ setVideoFile }) => {
         {isDragActive ? (
           <span>Drop the clip here ...</span>
         ) : (
-          <span>Drag and drop a clip here or click on Browse</span>
+          <span>Drag and drop a clip here, or click to browse</span>
         )}
       </div>
     </div>

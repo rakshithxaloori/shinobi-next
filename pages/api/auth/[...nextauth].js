@@ -12,7 +12,6 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, account }) {
-      console.log("JWT", new Date());
       // Persist the OAuth access_token to the token right after signin
       if (account?.provider === "google") {
         const { access_token } = account;
@@ -25,9 +24,7 @@ export default NextAuth({
             const user = await response.data.payload;
             token = user;
           }
-        } catch (e) {
-          console.log("JWT Error", e);
-        }
+        } catch (e) {}
       }
       return token;
     },
