@@ -1,9 +1,5 @@
 import Link from "next/link";
-import {
-  IoLogoDiscord,
-  IoLogoReddit,
-  IoMailOpenOutline,
-} from "react-icons/io5";
+import { IoLogoDiscord, IoLogoReddit, IoMail } from "react-icons/io5";
 
 import styles from "styles/components/layout/Footer.module.css";
 
@@ -73,7 +69,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <IoMailOpenOutline />
+                <IoMail />
                 <span className={styles.socialText}>Write to us ❤️</span>
               </a>
             </Link>
