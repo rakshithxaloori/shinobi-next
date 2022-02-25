@@ -1,13 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 import styles from "styles/home/Upload.module.css";
 
-import Title from "components/clip/upload.js/title";
-import SelectGame from "components/clip/upload.js/select_game";
+import Title from "components/home/upload/title";
+import SelectGame from "components/home/upload/select_game";
+import ProgressBar from "components/home/upload/progress";
+import Buttons from "components/home/upload/buttons";
+import Recaptcha from "components/home/upload/recaptcha";
 
 import getIsMobile from "hooks/dimensions";
+import Share from "components/clip/share";
 
 // When ffmpeg packages are updated,
 // update files in public dir
@@ -30,11 +34,13 @@ const Upload = ({ videoFile, setVideoFile }) => {
   const [disable, setDisable] = useState(false);
   const [error, setError] = useState("");
 
+  const recaptchaRef = useRef();
+  const [isUploading, setIsUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [post, setPost] = useState();
+
   useEffect(() => {
     loadFFmpeg();
-    return async () => {
-      await ffmpeg.exit();
-    };
   }, []);
 
   useEffect(() => {
@@ -42,10 +48,19 @@ const Upload = ({ videoFile, setVideoFile }) => {
   }, [ready]);
 
   const loadFFmpeg = async () => {
-    console.log("Loading ffmpeg");
-    await ffmpeg.load();
+    if (!ffmpeg.isLoaded()) {
+      console.log("Loading ffmpeg");
+      await ffmpeg.load();
+    }
     setReady(true);
   };
+
+  const handleCancel = async () => {
+    await recaptchaRef.current.reset();
+    setVideoFile(null);
+  };
+
+  const handleUpload = async () => {};
 
   const createThumbnail = async () => {
     ffmpeg.FS("writeFile", videoFile.name, await fetchFile(videoFile));
@@ -98,7 +113,24 @@ const Upload = ({ videoFile, setVideoFile }) => {
               disable={disable}
               setError={setError}
             />
+
+            {isUploading ? (
+              progress < 100 ? (
+                <ProgressBar progress={progress} />
+              ) : post ? (
+                <Share post={post} />
+              ) : (
+                <span>Creating a shareable link...</span>
+              )
+            ) : (
+              <Buttons
+                disable={disable}
+                handleCancel={handleCancel}
+                handleUpload={handleUpload}
+              />
+            )}
           </div>
+          <Recaptcha recaptchaRef={recaptchaRef} />
         </div>
       ) : (
         <span>Loading...</span>

@@ -11,6 +11,7 @@ const handler = async (req, res) => {
   }
   const { params } = req.query;
   const url = "/" + params.join("/") + "/";
+  console.log(url);
 
   try {
     let response = null;

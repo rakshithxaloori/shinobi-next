@@ -34,3 +34,9 @@
   position: relative !important;
   height: unset !important;
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

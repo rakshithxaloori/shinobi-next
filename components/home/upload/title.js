@@ -1,5 +1,4 @@
 import React from "react";
-import { IoDocumentTextOutline } from "react-icons/io5";
 
 import styles from "styles/components/upload/Title.module.css";
 
@@ -10,7 +9,9 @@ const Title = ({ title, setTitle, disable }) => {
     <div className={styles.container}>
       <div className={styles.title}>
         <textarea
-          className={styles.inputField}
+          className={`${styles.inputField} ${
+            title.length > POST_TITLE_LENGTH && styles.error
+          }`}
           placeholder="A cool title for the clip!"
           value={title}
           onChange={(e) => setTitle(e.target.value.replace(/\s+/g, " "))}

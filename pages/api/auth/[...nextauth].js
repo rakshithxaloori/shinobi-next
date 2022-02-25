@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+
 import { createAPIKit } from "utils/APIKit";
-import { logOut } from "utils/auth";
 
 export default NextAuth({
   providers: [
@@ -15,6 +15,8 @@ export default NextAuth({
       // Persist the OAuth access_token to the token right after signin
       if (account?.provider === "google") {
         const { access_token } = account;
+
+        // Using APIKit because /api/auth redirects to this file not handler
         const APIKit = await createAPIKit();
         try {
           const response = await APIKit.post("/auth/login/google/", {
@@ -37,7 +39,16 @@ export default NextAuth({
 
   events: {
     async signOut({ token }) {
-      await logOut(token?.token_key);
+      const token_key = token?.token_key;
+
+      // Using APIKit because /api/auth redirects to this file not handler
+      const APIKit = await createAPIKit();
+      if (token_key) {
+        APIKit.defaults.headers.common["Authorization"] = `Token ${token_key}`;
+      }
+      try {
+        await APIKit.get("/auth/logout/");
+      } catch (e) {}
     },
   },
 });

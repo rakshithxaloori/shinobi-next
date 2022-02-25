@@ -3,6 +3,8 @@ import Image from "next/image";
 import { IoCloseCircle } from "react-icons/io5";
 import axios from "axios";
 
+import styles from "styles/components/upload/SelectGame.module.css";
+
 const GAME_ICON_SIZE = 30;
 
 const SelectGame = ({ game, setGame, disable, setError }) => {
@@ -48,7 +50,7 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {game ? (
         <div>
           <Image
@@ -71,6 +73,7 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
       ) : (
         <div onFocus={() => setShowGames(true)}>
           <input
+            className={styles.inputField}
             value={searchText}
             onChange={handleSearchChange}
             type="search"
