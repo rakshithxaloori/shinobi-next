@@ -2,6 +2,8 @@ import { useDropzone } from "react-dropzone";
 
 import styles from "styles/home/Browse.module.css";
 
+import { VIDEO_MIME_TYPES } from "utils/clip";
+
 const Browse = ({ setVideoFile }) => {
   const onDrop = (files) => {
     if (files.length > 0) setVideoFile(files[0]);
@@ -9,7 +11,7 @@ const Browse = ({ setVideoFile }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "video/*",
+    accept: VIDEO_MIME_TYPES.join(","),
     maxFiles: 1,
     multiple: false,
   });

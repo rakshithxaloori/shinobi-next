@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "styles/components/upload/Title.module.css";
 
-import { POST_TITLE_LENGTH } from "utils/lengths";
+import { POST_TITLE_LENGTH } from "utils/clip";
 
 const Title = ({ title, setTitle, disable }) => {
   return (

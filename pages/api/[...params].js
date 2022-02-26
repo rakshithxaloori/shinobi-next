@@ -11,7 +11,7 @@ const handler = async (req, res) => {
   }
   const { params } = req.query;
   const url = "/" + params.join("/") + "/";
-  console.log(url);
+  console.log("MAKING API REQUEST", url);
 
   try {
     let response = null;
