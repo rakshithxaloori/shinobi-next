@@ -84,3 +84,17 @@
   justify-content: center;
   align-items: center;
 }
+
+.shareCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shareWeb {
+  width: 60%;
+}
+
+.shareMobile {
+  width: 100%;
+}

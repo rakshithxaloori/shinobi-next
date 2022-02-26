@@ -40,3 +40,11 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.error {
+  color: red;
+}
+
+.warning {
+  color: #ffc107;
+}

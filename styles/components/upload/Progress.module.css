@@ -1,0 +1,9 @@
+.container {
+  height: 20px;
+  width: 100%;
+}
+
+.progress {
+  font-weight: bold;
+  width: 100%;
+}

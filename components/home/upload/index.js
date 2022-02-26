@@ -222,9 +222,9 @@ const Upload = ({ videoFile, setVideoFile }) => {
           </div>
           <div className={styles.details}>
             {error ? (
-              <span style={{ color: "red" }}>{error}</span>
+              <span className={styles.error}>{error}</span>
             ) : warning ? (
-              <span style={{ color: "#ffc107" }}>{warning}</span>
+              <span className={styles.warning}>{warning}</span>
             ) : null}
 
             <Title title={title} setTitle={setTitle} disable={isUploading} />

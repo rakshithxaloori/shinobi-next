@@ -86,7 +86,11 @@ const Clip = ({ post, videoOptions }) => {
           <VideoJS options={videoOptions} />
         </div>
       </div>
-      <Share post={post} />
+      <div className={styles.shareCenter}>
+        <div className={`${isMobile ? styles.shareMobile : styles.shareWeb}`}>
+          <Share post={post} />
+        </div>
+      </div>
     </div>
   ) : (
     <ClipNotFound />
