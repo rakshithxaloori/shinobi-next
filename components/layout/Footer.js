@@ -74,9 +74,9 @@ const Footer = () => {
               </a>
             </Link>
           </div>
-          <div className={styles.column}>
+          {/* <div className={styles.column}>
             <PlayStore />
-          </div>
+          </div> */}
         </div>
       </nav>
     </footer>
