@@ -7,18 +7,21 @@ import { create_clip_url } from "../../utils/urls";
 import Reddit from "components/share/reddit";
 import Facebook from "components/share/facebook";
 import Twitter from "components/share/twitter";
+import getIsMobile from "hooks/dimensions";
 
 const SOCIALS_ICON_SIZE = 30;
 const CLIPBOARD_ICON_SIZE = 26;
 
 const Share = ({ post }) => {
+  const isMobile = getIsMobile();
   const [copied, setCopied] = useState(false);
+  const { id, title, game, posted_by } = post;
 
-  const shinobi_url = create_clip_url(post.id);
-  const facebook_text = `A ${post.game.name} clip by ${post.posted_by.username} | Shinobi`;
-  const reddit_title = post.title;
-  const reddit_text = `${post.posted_by.username} | Shinobi\n${shinobi_url}`;
-  const twitter_text = `${post.title}\nA ${post.game.name} clip by ${post.posted_by.username} | Shinobi\n${shinobi_url}`;
+  const shinobi_url = create_clip_url(id);
+  const facebook_text = `A ${game.name} clip by ${posted_by.username} | Shinobi`;
+  const reddit_title = title;
+  const reddit_text = `${posted_by.username} | Shinobi\n${shinobi_url}`;
+  const twitter_text = `${title}\nA ${game.name} clip by ${posted_by.username} | Shinobi\n${shinobi_url}`;
 
   const copyTextToClipboard = async (text) => {
     if ("clipboard" in navigator) {
@@ -37,9 +40,13 @@ const Share = ({ post }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${isMobile ? styles.mobile : styles.web}`}
+    >
       <section className={styles.link}>
-        <span>{shinobi_url}</span>
+        <span>
+          {isMobile ? shinobi_url.replace("https://", "") : shinobi_url}
+        </span>
         <span className={styles.copy} onClick={clickCopy}>
           {copied ? (
             <HiOutlineClipboardCheck size={CLIPBOARD_ICON_SIZE} />
