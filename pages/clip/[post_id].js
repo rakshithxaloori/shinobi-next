@@ -7,6 +7,7 @@ import Share from "components/clip/share";
 
 import styles from "styles/Clip.module.css";
 
+import { createAPIKit } from "utils/APIKit";
 import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
@@ -16,7 +17,6 @@ let GAME_ICON_SIZE = 20;
 
 const Clip = ({ post, videoOptions }) => {
   const isMobile = getIsMobile();
-
   return typeof post?.id === "string" ? (
     <div
       className={`${styles.container} ${isMobile ? styles.mobile : styles.web}`}
@@ -86,9 +86,7 @@ const Clip = ({ post, videoOptions }) => {
           <VideoJS options={videoOptions} />
         </div>
       </div>
-      <div>
-        <Share post={post} />
-      </div>
+      <Share post={post} />
     </div>
   ) : (
     <ClipNotFound />
@@ -102,8 +100,9 @@ export async function getServerSideProps(context) {
 
   if (typeof post_id === "string") {
     try {
-      const response = await axios.post("/api/feed/post/", { post_id });
-      const { post } = response.data.payload;
+      const APIKit = await createAPIKit();
+      const response = await APIKit.post("/feed/post/", { post_id });
+      const { post } = response.data?.payload;
 
       const videoOptions = {
         // lookup the options in the docs for more options

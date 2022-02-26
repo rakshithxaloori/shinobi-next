@@ -1,38 +1,33 @@
 .container {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 20px 20px 20px 20px;
 }
 
 .mobile {
-  display: flex;
-  flex-direction: column;
 }
 .web {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
   padding-left: 20px;
   padding-right: 20px;
-  height: fit-content;
 }
 
 .post {
+  width: 100%;
   border-radius: 10px 10px;
-  margin-right: 20px;
 }
 
 .meta {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: rgba(128, 128, 128, 0.16);
+  padding: 20px 20px 20px 20px;
+  background-color: black;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  color: white;
 }
 
 .header {
   display: flex;
   flex-direction: row;
-  padding: 0px 10px;
   margin-bottom: 10px;
 }
 
@@ -78,17 +73,14 @@
 .details {
   display: flex;
   flex-direction: column;
-  padding: 0px 20px;
 }
 
 .videoWeb {
   width: 100%;
-  height: auto;
 }
 
 .videoMobile {
-  width: 90vw;
-  height: auto;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
