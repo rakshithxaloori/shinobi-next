@@ -31,6 +31,7 @@ const ffmpeg = createFFmpeg({
 
 const THUMBNAIL_MIME_TYPE = "image/jpeg";
 const THUMBNAIL_EXTENSION = "jpg";
+const THUMBNAIL_QUALITY = 10;
 
 const Upload = ({ videoFile, setVideoFile }) => {
   const videoRef = useRef();
@@ -190,7 +191,7 @@ const Upload = ({ videoFile, setVideoFile }) => {
       "-frames:v",
       "1",
       "-qscale:v",
-      "5",
+      THUMBNAIL_QUALITY,
       filename
     );
 
