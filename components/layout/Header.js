@@ -23,19 +23,26 @@ const Header = () => {
         }`}
       >
         {status === "unauthenticated" && !session && (
-          <li>
-            <Link href="/api/auth/signin">
-              <a
-                className={styles.link}
-                onClick={(e) => {
-                  e.preventDefault();
-                  signIn("google");
-                }}
-              >
-                Sign In
-              </a>
-            </Link>
-          </li>
+          <>
+            <li>
+              <Link href="/api/auth/signin">
+                <a
+                  className={styles.link}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signIn("google");
+                  }}
+                >
+                  Sign In
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/signup">
+                <a className={styles.link}>Sign Up</a>
+              </Link>
+            </li>
+          </>
         )}
         {status === "authenticated" && session && (
           <li>
