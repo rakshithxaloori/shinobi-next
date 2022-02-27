@@ -13,7 +13,18 @@ export default async function auth(req, res) {
         clientSecret: process.env.GOOGLE_SECRET,
       }),
     ],
+
+    pages: {
+      error: "/auth/error",
+    },
+
     callbacks: {
+      async signIn(params) {
+        const { email } = params;
+        const isNewUser = _checkIfNewUser(email);
+        if (isNewUser) return false;
+        else return true;
+      },
       async jwt({ token, account }) {
         // Persist the OAuth access_token to the token right after signin
         if (account?.provider === "google") {
@@ -21,7 +32,6 @@ export default async function auth(req, res) {
 
           // Check if user with email exists
           const isNewUser = await _checkIfNewUser(token?.email);
-          console.log("isNewUser", isNewUser);
           let payload = {};
           let url = "";
 
@@ -48,6 +58,7 @@ export default async function auth(req, res) {
         return token;
       },
       async session({ session, token }) {
+        console.log(token);
         // Send properties to the client, like an access_token from a provider.
         session = { ...token };
         return session;

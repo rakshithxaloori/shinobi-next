@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { IoCloudUploadOutline } from "react-icons/io5";
 
 import styles from "styles/components/layout/Header.module.css";
 
@@ -38,7 +37,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/signup">
+              <Link href="/auth/signup">
                 <a className={styles.link}>Sign Up</a>
               </Link>
             </li>
