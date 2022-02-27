@@ -29,8 +29,8 @@ const ffmpeg = createFFmpeg({
   corePath: "./ffmpeg-core/dist/ffmpeg-core.js",
 });
 
-const THUMBNAIL_MIME_TYPE = "image/png";
-const THUMBNAIL_EXTENSION = "png";
+const THUMBNAIL_MIME_TYPE = "image/jpeg";
+const THUMBNAIL_EXTENSION = "jpg";
 
 const Upload = ({ videoFile, setVideoFile }) => {
   const videoRef = useRef();
@@ -189,8 +189,8 @@ const Upload = ({ videoFile, setVideoFile }) => {
       "00:00:00",
       "-frames:v",
       "1",
-      "-q:v",
-      "2",
+      "-qscale:v",
+      "5",
       filename
     );
 
@@ -199,6 +199,8 @@ const Upload = ({ videoFile, setVideoFile }) => {
     const thumbnailItem = new File([data.buffer], filename, {
       type: THUMBNAIL_MIME_TYPE,
     });
+
+    console.log("THUMBNAIL SIZE", thumbnailItem.size / (1000 * 1000), "MB");
 
     setThumbnailFile(thumbnailItem);
     setThumbnailUrl(URL.createObjectURL(thumbnailItem));
