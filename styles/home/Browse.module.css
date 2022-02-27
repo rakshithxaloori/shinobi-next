@@ -1,5 +1,6 @@
 .browse {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -20,4 +21,10 @@
 
 .videoInput {
   display: none;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
