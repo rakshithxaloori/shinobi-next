@@ -25,7 +25,7 @@ const Clip = ({ post, videoOptions }) => {
         <title>{post.title} | Shinobi</title>
         <meta
           property="fb:app_id"
-          content={process.env.REACT_APP_FACEBOOK_APP_ID}
+          content={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
         />
         <meta property="og:title" content={`${post.title} | Shinobi`} />
         <meta property="og:type" content="video.other" />
