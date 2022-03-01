@@ -11,9 +11,11 @@
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   width: 100%;
+  min-height: 100vh;
 }
 
 .browseMobile {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
