@@ -1,16 +1,25 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import styles from "styles/components/layout/Header.module.css";
 import AuthModal from "components/auth/modal";
 
 const PICTURE_SIZE = 25;
+const SIGNIN_HREF = "/auth/signin";
+const SIGNUP_HREF = "/auth/signup";
 
 const Header = () => {
+  const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
+
+  const isAuthPage =
+    router.pathname === "/auth/signin" || router.pathname === "/auth/signup";
+  console.log(isAuthPage);
+
   return (
     <nav className={styles.header}>
       <Link href="/">
@@ -27,12 +36,16 @@ const Header = () => {
         {status === "unauthenticated" && !session && (
           <>
             <li>
-              <Link href="/api/auth/signin">
+              <Link href={SIGNIN_HREF}>
                 <a
                   className={styles.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    signIn("google");
+                    if (isAuthPage) {
+                      router.push(SIGNIN_HREF);
+                    } else {
+                      signIn("google");
+                    }
                   }}
                 >
                   Sign In
@@ -40,9 +53,21 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <span className={styles.link} onClick={() => setIsOpen(true)}>
-                Sign Up
-              </span>
+              <Link href={SIGNUP_HREF}>
+                <a
+                  className={styles.link}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (isAuthPage) {
+                      router.push(SIGNUP_HREF);
+                    } else {
+                      setIsOpen(true);
+                    }
+                  }}
+                >
+                  Sign Up
+                </a>
+              </Link>
             </li>
           </>
         )}
