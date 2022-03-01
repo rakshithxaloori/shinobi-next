@@ -34,6 +34,7 @@
 .link:hover {
   color: lightseagreen;
   transition: 200ms ease-in;
+  cursor: pointer;
 }
 
 .mainNav {

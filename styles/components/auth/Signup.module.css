@@ -1,0 +1,42 @@
+.card {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 10px;
+  border-radius: 20px;
+  border-color: black;
+  border-width: 2px;
+}
+
+.inputField {
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.statement {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: lightseagreen;
+  transition: 200ms ease-in;
+}

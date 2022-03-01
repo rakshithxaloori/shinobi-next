@@ -15,16 +15,11 @@ export default async function auth(req, res) {
     ],
 
     pages: {
+      signIn: "/auth/signin",
       error: "/auth/error",
     },
 
     callbacks: {
-      async signIn(params) {
-        const { email } = params;
-        const isNewUser = _checkIfNewUser(email);
-        if (isNewUser) return false;
-        else return true;
-      },
       async jwt({ token, account }) {
         // Persist the OAuth access_token to the token right after signin
         if (account?.provider === "google") {
@@ -47,20 +42,19 @@ export default async function auth(req, res) {
 
           // Using APIKit because /api/auth redirects to this file not handler
           const APIKit = await createAPIKit();
-          try {
-            const response = await APIKit.post(url, payload);
-            if (response.status === 200) {
-              const user = await response.data.payload;
-              token = user;
-            }
-          } catch (e) {}
+          const response = await APIKit.post(url, payload);
+          if (response.status === 200) {
+            const user = response.data.payload;
+            token = user;
+            return token;
+          }
         }
         return token;
       },
       async session({ session, token }) {
-        console.log(token);
         // Send properties to the client, like an access_token from a provider.
         session = { ...token };
+        console.log("SESSION", session);
         return session;
       },
     },

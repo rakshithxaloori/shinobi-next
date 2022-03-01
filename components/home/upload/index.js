@@ -21,6 +21,7 @@ import {
   VIDEO_MAX_DURATION,
   POST_TITLE_LENGTH,
 } from "utils/clip";
+import AuthModal from "components/auth/modal";
 
 // When ffmpeg packages are updated,
 // update files in public dir
@@ -36,8 +37,9 @@ const THUMBNAIL_QUALITY = 10;
 const Upload = ({ videoFile, setVideoFile }) => {
   const videoRef = useRef();
   const videoUrl = URL.createObjectURL(videoFile);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-  const session = useSession();
+  const { data: session, status } = useSession();
   const isMobile = getIsMobile();
   const [ready, setReady] = useState();
   const [thumbnailFile, setThumbnailFile] = useState();
@@ -92,7 +94,7 @@ const Upload = ({ videoFile, setVideoFile }) => {
     const clipDuration = videoRef.current.duration;
     if (isNaN(clipDuration)) {
       setWarning(
-        `The clip won't appear in feed, if it's is less than ${VIDEO_MIN_DURATION} or more than ${VIDEO_MAX_DURATION} seconds`
+        `Clip is not uploaded if it's is less than ${VIDEO_MIN_DURATION} or more than ${VIDEO_MAX_DURATION} seconds`
       );
     } else if (
       clipDuration < VIDEO_MIN_DURATION ||
@@ -129,6 +131,10 @@ const Upload = ({ videoFile, setVideoFile }) => {
   const handleUpload = async () => {
     // Verify stuff
     if (!_verify()) return;
+    if (status !== "authenticated") {
+      setIsOpen(true);
+      return;
+    }
 
     const videoSplit = videoFile.name.split(".");
     const thumbnailSplit = thumbnailFile.name.split(".");
@@ -273,6 +279,11 @@ const Upload = ({ videoFile, setVideoFile }) => {
       ) : (
         <span>Loading...</span>
       )}
+      <AuthModal
+        modalIsOpen={modalIsOpen}
+        afterOpenModal={() => console.log("Modal Opened")}
+        closeModal={() => setIsOpen(false)}
+      />
     </div>
   );
 };

@@ -1,12 +1,15 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import styles from "styles/components/layout/Header.module.css";
+import AuthModal from "components/auth/modal";
 
 const PICTURE_SIZE = 25;
 
 const Header = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
   return (
     <nav className={styles.header}>
@@ -37,9 +40,9 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/auth/signup">
-                <a className={styles.link}>Sign Up</a>
-              </Link>
+              <span className={styles.link} onClick={() => setIsOpen(true)}>
+                Sign Up
+              </span>
             </li>
           </>
         )}
@@ -48,8 +51,7 @@ const Header = () => {
             <Link href="/api/auth/signout">
               <a
                 className={styles.link}
-                onClick={async (e) => {
-                  console.log("Signing out");
+                onClick={(e) => {
                   e.preventDefault();
                   signOut();
                 }}
@@ -67,6 +69,11 @@ const Header = () => {
           </li>
         )}
       </ul>
+      <AuthModal
+        modalIsOpen={modalIsOpen}
+        afterOpenModal={() => console.log("Modal Opened")}
+        closeModal={() => setIsOpen(false)}
+      />
     </nav>
   );
 };

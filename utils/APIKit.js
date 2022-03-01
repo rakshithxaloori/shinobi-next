@@ -13,3 +13,17 @@ export const createAPIKit = async () => {
   });
   return APIKit;
 };
+
+export const networkError = (error) => {
+  if (error.response) {
+    // Request made and server responded
+    if (error.response.status >= 500) return "Oops, server error";
+    else return error.response.data.detail;
+  } else if (error.request) {
+    // The request was made but no response was received
+    return "You're offline";
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    return "Huh, something went wrong";
+  }
+};

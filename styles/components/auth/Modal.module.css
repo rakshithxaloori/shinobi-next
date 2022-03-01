@@ -1,0 +1,42 @@
+.container {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  right: auto;
+  bottom: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 30px;
+  border-bottom: solid 1px #e5e5e5;
+}
+
+.title {
+  font-size: 20px;
+  color: #666666;
+}
+
+.subtitle {
+  font-size: 12px;
+}
+
+.seperator {
+  width: 80%;
+  height: 1px;
+  background-color: #e5e5e5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
