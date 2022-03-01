@@ -54,7 +54,6 @@ export default async function auth(req, res) {
       async session({ session, token }) {
         // Send properties to the client, like an access_token from a provider.
         session = { ...token };
-        console.log("SESSION", session);
         return session;
       },
     },
