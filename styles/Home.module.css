@@ -1,8 +1,19 @@
 .container {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
   padding: 0 2rem;
+  margin-top: 30px;
   justify-content: center;
-  align-items: center;
+}
+
+.browseWeb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.browseMobile {
+  display: flex;
+  flex-direction: column;
 }
