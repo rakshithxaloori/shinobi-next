@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 import styles from "styles/auth/Signin.module.css";
 
 import Error from "components/error";
 import SignIn from "components/auth/signin";
 
-const SignInPage = () => {
-  const { error } = useRouter().query;
+const SignInPage = ({ error }) => {
   const [disable, setDisable] = useState(false);
 
   return (
@@ -19,7 +17,7 @@ const SignInPage = () => {
             Sign in to start sharing gaming clips
           </span>
         </div>
-        {error && <Error error={error} />}
+        {/* {error && <Error error={error} />} */}
         <SignIn disable={disable} setDisable={setDisable} />
       </div>
     </div>
