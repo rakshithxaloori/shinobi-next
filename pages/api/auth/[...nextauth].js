@@ -15,7 +15,6 @@ export default async function auth(req, res) {
     ],
 
     pages: {
-      signIn: "/auth/signin",
       error: "/auth/error",
     },
 

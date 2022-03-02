@@ -93,11 +93,13 @@ const Header = () => {
           </li>
         )}
       </ul>
-      <AuthModal
-        modalIsOpen={modalIsOpen}
-        afterOpenModal={() => console.log("Modal Opened")}
-        closeModal={() => setIsOpen(false)}
-      />
+      {status === "unauthenticated" && (
+        <AuthModal
+          modalIsOpen={modalIsOpen}
+          afterOpenModal={() => console.log("Modal Opened")}
+          closeModal={() => setIsOpen(false)}
+        />
+      )}
     </nav>
   );
 };

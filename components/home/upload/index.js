@@ -281,11 +281,13 @@ const Upload = ({ videoFile, setVideoFile }) => {
       ) : (
         <span>Loading...</span>
       )}
-      <AuthModal
-        modalIsOpen={modalIsOpen}
-        afterOpenModal={() => console.log("Modal Opened")}
-        closeModal={() => setIsOpen(false)}
-      />
+      {status === "unauthenticated" && (
+        <AuthModal
+          modalIsOpen={modalIsOpen}
+          afterOpenModal={() => console.log("Modal Opened")}
+          closeModal={() => setIsOpen(false)}
+        />
+      )}
     </div>
   );
 };
