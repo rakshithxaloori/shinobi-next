@@ -14,7 +14,9 @@ const Browse = ({ setVideoFile }) => {
         setError(
           `Video has to be smaller than ${VIDEO_MAX_SIZE / (1000 * 1000)} MB`
         );
-      else {
+      else if (VIDEO_MIME_TYPES.includes(videoFile.type) === false) {
+        setError("Select an avi, ogg, mp4, mov or webm video");
+      } else {
         setError("");
         setVideoFile(files[0]);
       }
