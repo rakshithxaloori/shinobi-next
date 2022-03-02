@@ -18,7 +18,6 @@ const Header = () => {
 
   const isAuthPage =
     router.pathname === "/auth/signin" || router.pathname === "/auth/signup";
-  console.log(isAuthPage);
 
   return (
     <nav className={styles.header}>

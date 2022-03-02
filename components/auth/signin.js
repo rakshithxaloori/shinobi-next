@@ -1,6 +1,6 @@
 import { signIn } from "next-auth/react";
 
-import authStyles from "styles/components/auth/Auth.module.css";
+import globalStyles from "styles/Globals.module.css";
 
 const SignIn = ({ disable, setDisable }) => {
   const handleSignIn = async () => {
@@ -9,7 +9,7 @@ const SignIn = ({ disable, setDisable }) => {
   };
   return (
     <button
-      className={authStyles.button}
+      className={globalStyles.button}
       onClick={handleSignIn}
       disabled={disable}
     >

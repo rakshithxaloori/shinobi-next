@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { signIn } from "next-auth/react";
 import axios from "axios";
 
-import authStyles from "styles/components/auth/Auth.module.css";
+import globalStyles from "styles/Globals.module.css";
 import styles from "styles/components/auth/Signup.module.css";
 
 import { networkError } from "utils/APIKit";
@@ -64,7 +64,11 @@ const SignUp = ({ disable, setDisable }) => {
           </Link>
         </div>
       </div>
-      <button className={authStyles.button} onClick={signUp} disabled={disable}>
+      <button
+        className={globalStyles.button}
+        onClick={signUp}
+        disabled={disable}
+      >
         Sign Up
       </button>
     </div>

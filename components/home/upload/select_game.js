@@ -23,7 +23,6 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
         });
         const games = response.data?.payload?.games;
         setGames(games);
-        console.log(games);
       } catch (e) {
       } finally {
         setFetching(false);
