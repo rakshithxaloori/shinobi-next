@@ -14,3 +14,27 @@
   margin: 0 0 5px;
   padding: 10px;
 }
+
+.menu {
+  margin-left: 5px;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.gameIcon {
+  border-radius: 50%;
+}
+
+.gameTitle {
+  margin-left: 8px;
+}
+
+.removeGame {
+  margin-left: auto;
+}

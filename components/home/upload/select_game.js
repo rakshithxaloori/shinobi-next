@@ -51,15 +51,17 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
   return (
     <div className={styles.container}>
       {game ? (
-        <div>
+        <div className={styles.option}>
           <Image
+            className={styles.gameIcon}
             src={game.logo_url}
             height={GAME_ICON_SIZE}
             width={GAME_ICON_SIZE}
             alt={game.name}
           />
-          <span style={{ marginLeft: 10 }}>{game.name}</span>
+          <span className={styles.gameTitle}>{game.name}</span>
           <span
+            className={styles.removeGame}
             onClick={() => {
               if (!disable) {
                 setGame(null);
@@ -81,7 +83,7 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
             disabled={disable}
           />
           {showGames && games.length > 0 && (
-            <div>
+            <div className={styles.menu}>
               {games.map((game) => (
                 <Game key={game.id} game={game} selectGame={selectGame} />
               ))}
@@ -96,17 +98,19 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
 const Game = ({ game, selectGame }) => {
   return (
     <span
+      className={styles.option}
       onClick={() => {
         selectGame(game);
       }}
     >
       <Image
+        className={styles.gameIcon}
         src={game.logo_url}
         height={GAME_ICON_SIZE}
         width={GAME_ICON_SIZE}
         alt={game.name}
       />
-      <span>{game.name}</span>
+      <span className={styles.gameTitle}>{game.name}</span>
     </span>
   );
 };

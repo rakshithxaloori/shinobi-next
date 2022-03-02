@@ -22,6 +22,7 @@ import {
   POST_TITLE_LENGTH,
 } from "utils/clip";
 import AuthModal from "components/auth/modal";
+import { networkError } from "utils/APIKit";
 
 // When ffmpeg packages are updated,
 // update files in public dir
@@ -162,7 +163,7 @@ const Upload = ({ videoFile, setVideoFile }) => {
 
       const tb_res = await _uploadFileToS3(thumbnailFile, thumbnail_url);
       if (!tb_res) {
-        // Some error
+        setError("Something went wrong. Thumbnail not uploaded");
       }
       const clip_res = await _uploadFileToS3(videoFile, url, (event) =>
         setProgress(Math.round((100 * event.loaded) / event.total))
@@ -178,10 +179,11 @@ const Upload = ({ videoFile, setVideoFile }) => {
       } else {
         // Some error
         setIsUploading(false);
+        setError("Something went wrong. Clip not uploaded");
       }
     } catch (e) {
       setIsUploading(false);
-      // TODO set error
+      setError(networkError(e));
     }
   };
 
