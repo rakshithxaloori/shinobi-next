@@ -21,6 +21,8 @@ export default async function auth(req, res) {
       }),
     ],
 
+    secret: process.env.NEXTAUTH_SECRET,
+
     pages: {
       error: "/auth/error",
     },
