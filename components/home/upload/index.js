@@ -22,7 +22,7 @@ import {
   POST_TITLE_LENGTH,
 } from "utils/clip";
 import AuthModal from "components/auth/modal";
-import { networkError } from "utils/APIKit";
+import { createAPIKit, networkError } from "utils/APIKit";
 
 // When ffmpeg packages are updated,
 // update files in public dir
@@ -157,7 +157,8 @@ const Upload = ({ videoFile, setVideoFile }) => {
     };
 
     try {
-      const response = await axios.post("/api/clips/presigned/web/", post_data);
+      const APIKit = await createAPIKit(session?.token_key);
+      const response = await APIKit.post("/clips/presigned/web/", post_data);
       const { url, thumbnail_url, post_id } = response.data?.payload;
       setPostId(post_id);
 
@@ -170,7 +171,8 @@ const Upload = ({ videoFile, setVideoFile }) => {
       );
       if (clip_res) {
         // Send request as uploaded
-        const upload_res = await axios.post("/api/clips/success/", {
+        const APIKit = await createAPIKit(session?.token_key);
+        const upload_res = await APIKit.post("/clips/success/", {
           file_key: url.fields.key,
         });
         if (upload_res.status === 200) {

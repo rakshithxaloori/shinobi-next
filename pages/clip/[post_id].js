@@ -11,14 +11,15 @@ import { createAPIKit, networkError } from "utils/APIKit";
 import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
+import { getSession } from "next-auth/react";
 
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
 
 const Clip = ({ post, videoOptions, error }) => {
   console.log("ERROR", error);
-  console.log("POST", post);
-  console.log("VIDEO OPTIONS", videoOptions);
+  console.log("POST", typeof post);
+  console.log("VIDEO OPTIONS", typeof videoOptions);
   const isMobile = getIsMobile();
   return typeof post?.id === "string" ? (
     <div

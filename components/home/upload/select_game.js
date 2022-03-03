@@ -4,6 +4,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import axios from "axios";
 
 import styles from "styles/components/upload/SelectGame.module.css";
+import { createAPIKit } from "utils/APIKit";
 
 const GAME_ICON_SIZE = 30;
 
@@ -18,7 +19,8 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
       if (searchText === "") return;
       setFetching(true);
       try {
-        const response = await axios.post("/api/profile/games/search/", {
+        const APIKit = await createAPIKit();
+        const response = await APIKit.post("/profile/games/search/", {
           search: searchText,
         });
         const games = response.data?.payload?.games;

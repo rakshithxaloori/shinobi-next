@@ -5,11 +5,15 @@ if (process.env.CI_CD_STAGE === "production")
   API_ENDPOINT = `https://${process.env.BASE_API_ENDPOINT}`;
 else API_ENDPOINT = `http://${process.env.BASE_API_ENDPOINT}`;
 
-export const createAPIKit = async () => {
+export const createAPIKit = async (token_key = null) => {
+  let headers = { "X-Api-Key": process.env.API_KEY };
+  if (token_key) {
+    headers["Authorization"] = `Token ${token_key}`;
+  }
   const APIKit = axios.create({
     baseURL: API_ENDPOINT,
     timeout: 10000,
-    headers: { "X-Api-Key": process.env.API_KEY },
+    headers,
   });
   return APIKit;
 };

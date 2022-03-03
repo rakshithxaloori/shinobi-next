@@ -7,7 +7,7 @@ import axios from "axios";
 import globalStyles from "styles/Globals.module.css";
 import styles from "styles/components/auth/Signup.module.css";
 
-import { networkError } from "utils/APIKit";
+import { createAPIKit, networkError } from "utils/APIKit";
 
 const SignUp = ({ disable, setDisable }) => {
   const [username, setUsername] = useState("");
@@ -100,7 +100,8 @@ const _validateUsername = async (username, setError) => {
   }
 
   try {
-    const response = await axios.post("/api/auth/check_username/", {
+    const APIKit = await createAPIKit();
+    const response = await APIKit.post("/auth/check_username/", {
       username,
     });
     if (response.status === 200) return true;
