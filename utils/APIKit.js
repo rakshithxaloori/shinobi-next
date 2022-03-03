@@ -2,11 +2,11 @@ import axios from "axios";
 
 export const createAPIKit = async (token_key = null) => {
   let API_ENDPOINT = undefined;
-  if (process.env.CI_CD_STAGE === "production")
-    API_ENDPOINT = `https://${process.env.BASE_API_ENDPOINT}`;
-  else API_ENDPOINT = `http://${process.env.BASE_API_ENDPOINT}`;
+  if (process.env.NEXT_PUBLIC_CI_CD_STAGE === "production")
+    API_ENDPOINT = `https://${process.env.NEXT_PUBLIC_BASE_API_ENDPOINT}`;
+  else API_ENDPOINT = `http://${process.env.NEXT_PUBLIC_BASE_API_ENDPOINT}`;
 
-  let headers = { "X-Api-Key": process.env.API_KEY };
+  let headers = { "X-Api-Key": process.env.NEXT_PUBLIC_API_KEY };
   if (token_key) {
     headers["Authorization"] = `Token ${token_key}`;
   }
