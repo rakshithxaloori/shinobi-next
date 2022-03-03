@@ -10,10 +10,11 @@ export const createAPIKit = async (token_key = null) => {
   if (token_key) {
     headers["Authorization"] = `Token ${token_key}`;
   }
+  console.log(headers);
   const APIKit = axios.create({
     baseURL: API_ENDPOINT,
     timeout: 10000,
-    headers: {},
+    headers: headers,
   });
   return APIKit;
 };
