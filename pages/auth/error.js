@@ -7,8 +7,7 @@ const Error = ({ error }) => {
 export default Error;
 
 export async function getServerSideProps(context) {
-  const { query } = context;
-  const { error } = query;
+  const { error } = context?.query;
   switch (error) {
     case "AccessDenied":
       return {

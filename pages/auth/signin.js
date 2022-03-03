@@ -28,7 +28,6 @@ export default SignInPage;
 
 export async function getServerSideProps(context) {
   const { error } = context?.query;
-
   if (error) {
     switch (error) {
       case "Callback":
