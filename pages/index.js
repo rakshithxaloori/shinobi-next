@@ -16,8 +16,10 @@ const Home = () => {
         <Upload videoFile={videoFile} setVideoFile={setVideoFile} />
       ) : (
         <div className={isMobile ? styles.browseMobile : styles.browseWeb}>
-          <div>
+          <div className={styles.textSection}>
             <h1>Share gaming clips</h1>
+            <span>Upload a gaming clip</span>
+            <span>And we&apos;ll give you a link to share</span>
           </div>
           <Browse setVideoFile={setVideoFile} />
         </div>

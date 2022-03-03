@@ -27,7 +27,7 @@ const SignInPage = ({ error }) => {
 export default SignInPage;
 
 export async function getServerSideProps(context) {
-  const { error } = context?.query;
+  const error = context?.query?.error;
   if (error) {
     switch (error) {
       case "Callback":
