@@ -32,6 +32,8 @@ const nextConfig = {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
+
+  webpack5: false,
 };
 
 module.exports = nextConfig;
