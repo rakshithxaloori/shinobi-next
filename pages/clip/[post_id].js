@@ -15,7 +15,8 @@ import getIsMobile from "hooks/dimensions";
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
 
-const Clip = ({ post, videoOptions }) => {
+const Clip = ({ post, videoOptions, error }) => {
+  console.log("ERROR", error);
   console.log("POST", post);
   console.log("VIDEO OPTIONS", videoOptions);
   const isMobile = getIsMobile();
@@ -128,6 +129,7 @@ export async function getServerSideProps(context) {
       };
     } catch (e) {
       console.log("API Error", networkError(e));
+      return { props: { error: networkError(e) } };
     }
   }
 
