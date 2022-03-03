@@ -31,9 +31,12 @@ const nextConfig = {
 
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-  },
 
-  webpack5: false,
+    NEXT_PUBLIC_DISCORD_INVITE_LINK:
+      process.env.NEXT_PUBLIC_DISCORD_INVITE_LINK,
+    NEXT_PUBLIC_FACEBOOK_APP_ID: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+  },
 };
 
 module.exports = nextConfig;
