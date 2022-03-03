@@ -16,6 +16,8 @@ let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
 
 const Clip = ({ post, videoOptions }) => {
+  console.log("POST", post);
+  console.log("VIDEO OPTIONS", videoOptions);
   const isMobile = getIsMobile();
   return typeof post?.id === "string" ? (
     <div
