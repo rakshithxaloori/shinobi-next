@@ -11,6 +11,8 @@ import { createAPIKit, networkError } from "utils/APIKit";
 import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
+import OpenGraph from "components/opengraph/opengraph";
+import TwitterOG from "components/opengraph/twitter";
 
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
@@ -29,26 +31,8 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
           property="fb:app_id"
           content={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
         />
-        <meta property="og:title" content={`${post.title} | Shinobi`} />
-        <meta property="og:type" content="video.other" />
-        <meta property="og:url" content={create_clip_url(post.id)} />
-
-        {typeof post.clip?.thumbnail === "string" && (
-          <meta property="og:image" content={post.clip.thumbnail} />
-        )}
-        <meta
-          property="og:description"
-          content={`${post.game.name} clip by ${post.posted_by.username}`}
-        />
-        <meta property="og:video" content={clip_cdn_url(post.id)} />
-        <meta property="og:video:url" content={clip_cdn_url(post.id)} />
-        <meta property="og:video:secure_url" content={clip_cdn_url(post.id)} />
-        <meta property="og:video:type" content="video/mp4" />
-        <meta property="og:video:height" content={post.clip.height} />
-        <meta property="og:video:width" content={post.clip.width} />
-        <meta property="og:site_name" content="Shinobi" />
-        <meta property="video:tag" content="Shinobi" />
-        <meta property="video:tag" content={post.game.name} />
+        <OpenGraph post={post} />
+        <TwitterOG post={post} />
       </Head>
       <div className={styles.post}>
         <div className={styles.meta}>
