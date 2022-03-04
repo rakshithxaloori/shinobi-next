@@ -7,7 +7,7 @@ const TwitterOG = ({ post }) => {
   return (
     <>
       <meta name="twitter:card" content="player" />
-      <meta name="twitter:site" content="@Shinobi" />
+      <meta name="twitter:site" content="Shinobi" />
       <meta name="twitter:url" content={_clip_url} />
       <meta name="twitter:title" content={`${post.title} | Shinobi`} />
       <meta

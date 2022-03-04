@@ -6,7 +6,7 @@ const OpenGraph = ({ post }) => {
 
   return (
     <>
-      <meta property="og:site_name" content="@Shinobi" />
+      <meta property="og:site_name" content="Shinobi" />
       <meta property="og:title" content={`${post.title} | Shinobi`} />
       <meta property="og:type" content="video.other" />
       <meta property="og:url" content={_clip_url} />
