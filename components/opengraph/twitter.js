@@ -14,8 +14,6 @@ const TwitterOG = ({ post }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={post.clip.thumbnail} />
       <meta name="twitter:player" content={_embed_url} />
-      <meta name="twitter:player:stream" content={_cdn_url} />
-      <meta name="twitter:player:stream:content_type" content="video/mp4" />
       <meta name="twitter:player:width" content={post.clip.width} />
       <meta name="twitter:player:height" content={post.clip.height} />
     </>
