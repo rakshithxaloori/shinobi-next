@@ -11,15 +11,11 @@ import { createAPIKit, networkError } from "utils/APIKit";
 import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
-import { getSession } from "next-auth/react";
 
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
 
-const Clip = ({ post, videoOptions, error }) => {
-  console.log("ERROR", error);
-  console.log("POST", typeof post);
-  console.log("VIDEO OPTIONS", typeof videoOptions);
+const Clip = ({ post = null, videoOptions = null, error = null }) => {
   const isMobile = getIsMobile();
   return typeof post?.id === "string" ? (
     <div
@@ -34,12 +30,20 @@ const Clip = ({ post, videoOptions, error }) => {
         <meta property="og:title" content={`${post.title} | Shinobi`} />
         <meta property="og:type" content="video.other" />
         <meta property="og:url" content={create_clip_url(post.id)} />
-        <meta property="og:image" content={post.clip.thumbnail} />
+
+        {typeof post.clip?.thumbnail === "string" && (
+          <meta property="og:image" content={post.clip.thumbnail} />
+        )}
         <meta
           property="og:description"
           content={`${post.game.name} clip by ${post.posted_by.username}`}
         />
         <meta property="og:video" content={create_embed_url(post.id)} />
+        <meta property="og:video:url" content={create_embed_url(post.id)} />
+        <meta
+          property="og:video:secure_url"
+          content={create_embed_url(post.id)}
+        />
         <meta property="og:video:type" content="video/mp4" />
         <meta property="og:video:height" content={post.clip.height} />
         <meta property="og:video:width" content={post.clip.width} />
@@ -97,7 +101,7 @@ const Clip = ({ post, videoOptions, error }) => {
       </div>
     </div>
   ) : (
-    <ClipNotFound />
+    <ClipNotFound error={error} />
   );
 };
 
@@ -129,10 +133,14 @@ export async function getServerSideProps(context) {
         props: { post, videoOptions },
       };
     } catch (e) {
-      console.log("API Error", networkError(e));
       return { props: { error: networkError(e) } };
     }
   }
 
-  return { props: {} };
+  return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
 }

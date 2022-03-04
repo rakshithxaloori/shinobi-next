@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 
 import Header from "components/layout/Header";
@@ -7,9 +8,13 @@ import Footer from "components/layout/Footer";
 import "styles/globals.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const router = useRouter();
+  const rootPath = router.pathname.split("/")[1];
+
   if (Component.getLayout) {
     return Component.getLayout(<Component {...pageProps} />);
   }
+
   return (
     <SessionProvider session={session}>
       <Head>
@@ -20,9 +25,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {rootPath !== "embed" && <Header />}
       <Component {...pageProps} />
-      <Footer />
+      {rootPath !== "embed" && <Footer />}
     </SessionProvider>
   );
 }
