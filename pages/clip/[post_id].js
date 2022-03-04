@@ -22,7 +22,9 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
       className={`${styles.container} ${isMobile ? styles.mobile : styles.web}`}
     >
       <Head>
-        <title>{post.title} | Shinobi</title>
+        <title>
+          {post.title} | {post.game.name} | Shinobi
+        </title>
         <meta
           property="fb:app_id"
           content={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
@@ -38,16 +40,15 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
           property="og:description"
           content={`${post.game.name} clip by ${post.posted_by.username}`}
         />
-        <meta property="og:video" content={create_embed_url(post.id)} />
-        <meta property="og:video:url" content={create_embed_url(post.id)} />
-        <meta
-          property="og:video:secure_url"
-          content={create_embed_url(post.id)}
-        />
+        <meta property="og:video" content={clip_cdn_url(post.id)} />
+        <meta property="og:video:url" content={clip_cdn_url(post.id)} />
+        <meta property="og:video:secure_url" content={clip_cdn_url(post.id)} />
         <meta property="og:video:type" content="video/mp4" />
         <meta property="og:video:height" content={post.clip.height} />
         <meta property="og:video:width" content={post.clip.width} />
         <meta property="og:site_name" content="Shinobi" />
+        <meta property="video:tag" content="Shinobi" />
+        <meta property="video:tag" content={post.game.name} />
       </Head>
       <div className={styles.post}>
         <div className={styles.meta}>
