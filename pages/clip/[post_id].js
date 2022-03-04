@@ -153,7 +153,6 @@ const _openGraphMetaTags = (post) => {
     _metaTagObj("og:title", `${post.title} - Shinobi`),
     _metaTagObj("og:type", "video.other"),
     _metaTagObj("og:url", _clip_url),
-    _metaTagObj("og:image", post.clip.thumbnail),
     _metaTagObj("og:description", description),
     _metaTagObj("og:video", _cdn_url),
     _metaTagObj("og:video:url", _cdn_url),
@@ -161,6 +160,9 @@ const _openGraphMetaTags = (post) => {
     _metaTagObj("og:video:type", "video/mp4"),
     _metaTagObj("og:video:height", post.clip.height),
     _metaTagObj("og:video:width", post.clip.width),
+    _metaTagObj("og:image", post.clip.thumbnail),
+    _metaTagObj("og:image:height", post.clip.height),
+    _metaTagObj("og:image:width", post.clip.width),
     _metaTagObj("video:tag", "Shinobi"),
     _metaTagObj("video:tag", post.game.name),
   ];
