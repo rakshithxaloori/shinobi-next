@@ -5,8 +5,8 @@ import styles from "styles/home/Browse.module.css";
 
 import { VIDEO_MAX_SIZE, VIDEO_MIME_TYPES } from "utils/clip";
 
-const Browse = ({ setVideoFile }) => {
-  const [error, setError] = useState("");
+const Browse = ({ setVideoFile, count, networkE }) => {
+  const [error, setError] = useState(networkE);
   const onDrop = (files) => {
     if (files.length > 0) {
       const videoFile = files[0];
@@ -32,15 +32,34 @@ const Browse = ({ setVideoFile }) => {
   });
 
   return (
-    <div className={styles.browse}>
-      <span className={styles.error}>{error}</span>
-      <div {...getRootProps()} className={styles.dragDrop}>
-        <input {...getInputProps()} type="file" className={styles.videoInput} />
-        {isDragActive ? (
-          <span>Drop the clip here ...</span>
-        ) : (
-          <span>Drag and drop a clip here, or click to browse</span>
-        )}
+    <div className={styles.container}>
+      <div className={styles.textSection}>
+        <h1 className={styles.title}>Share gaming clips</h1>
+        <h3 className={styles.subtitle}>
+          Upload and get a universal clip link you can share anywhere!
+        </h3>
+        {
+          <span className={styles.count}>
+            {count
+              ? `Over ${count} clips shared by gamers`
+              : `HD gaming clips for free`}
+          </span>
+        }
+      </div>
+      <div className={styles.dropzone}>
+        <span className={styles.error}>{error}</span>
+        <div {...getRootProps()} className={styles.dragDrop}>
+          <input
+            {...getInputProps()}
+            type="file"
+            className={styles.videoInput}
+          />
+          {isDragActive ? (
+            <span>Drop the clip here ...</span>
+          ) : (
+            <span>Drag and drop a clip here, or click to browse</span>
+          )}
+        </div>
       </div>
     </div>
   );

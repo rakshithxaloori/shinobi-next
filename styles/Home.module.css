@@ -1,26 +1,4 @@
 .container {
   display: flex;
-  flex-direction: row;
-  padding: 0 2rem;
-  margin-top: 30px;
-  justify-content: center;
-}
-
-.browseWeb {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.browseMobile {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.textSection {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
 }
