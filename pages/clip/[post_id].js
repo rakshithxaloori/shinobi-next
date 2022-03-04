@@ -8,16 +8,20 @@ import Share from "components/clip/share";
 import styles from "styles/Clip.module.css";
 
 import { createAPIKit, networkError } from "utils/APIKit";
-import { clip_cdn_url } from "utils/urls";
+import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
-import OpenGraph from "components/opengraph/opengraph";
-import TwitterOG from "components/opengraph/twitter";
+import { description, site_name } from "utils/opengraph";
 
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
 
-const Clip = ({ post = null, videoOptions = null, error = null }) => {
+const Clip = ({
+  post = null,
+  videoOptions = null,
+  metaTags = [],
+  error = null,
+}) => {
   const isMobile = getIsMobile();
   return typeof post?.id === "string" ? (
     <div
@@ -31,8 +35,14 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
           property="fb:app_id"
           content={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
         />
-        <OpenGraph post={post} />
-        <TwitterOG post={post} />
+        {metaTags &&
+          metaTags.map((metaTag) => (
+            <meta
+              property={metaTag.property}
+              key={metaTag.property}
+              content={metaTag.content}
+            />
+          ))}
       </Head>
       <div className={styles.post}>
         <div className={styles.meta}>
@@ -116,7 +126,11 @@ export async function getServerSideProps(context) {
         ],
       };
       return {
-        props: { post, videoOptions },
+        props: {
+          post: post,
+          videoOptions,
+          metaTags: [..._openGraphMetaTags(post), ..._twitterMetaTags(post)],
+        },
       };
     } catch (e) {
       return { props: { error: networkError(e) } };
@@ -130,3 +144,41 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+const _openGraphMetaTags = (post) => {
+  const _clip_url = create_clip_url(post.id);
+  const _cdn_url = clip_cdn_url(post.clip.url);
+  return [
+    _metaTagObj("og:site_name", site_name),
+    _metaTagObj("og:title", `${post.title} - Shinobi`),
+    _metaTagObj("og:type", "video.other"),
+    _metaTagObj("og:url", _clip_url),
+    _metaTagObj("og:image", post.clip.thumbnail),
+    _metaTagObj("og:description", description),
+    _metaTagObj("og:video", _cdn_url),
+    _metaTagObj("og:video:url", _cdn_url),
+    _metaTagObj("og:video:secure_url", _cdn_url),
+    _metaTagObj("og:video:type", "video/mp4"),
+    _metaTagObj("og:video:height", post.clip.height),
+    _metaTagObj("og:video:width", post.clip.width),
+    _metaTagObj("video:tag", "Shinobi"),
+    _metaTagObj("video:tag", post.game.name),
+  ];
+};
+
+const _twitterMetaTags = (post) => [
+  _metaTagObj("twitter:card", "player"),
+  _metaTagObj("twitter:site", "@ShinobiApp"),
+  _metaTagObj("twitter:url", create_clip_url(post.id)),
+  _metaTagObj("twitter:title", `${post.title} - Shinobi`),
+  _metaTagObj("twitter:description", description),
+  _metaTagObj("twitter:image", post.clip.thumbnail),
+  _metaTagObj("twitter:player", create_embed_url(post.id)),
+  _metaTagObj("twitter:player:width", post.clip.width),
+  _metaTagObj("twitter:player:height", post.clip.height),
+];
+
+const _metaTagObj = (property, content) => ({
+  property,
+  content,
+});
