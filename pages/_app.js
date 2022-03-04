@@ -6,6 +6,7 @@ import Header from "components/layout/Header";
 import Footer from "components/layout/Footer";
 
 import "styles/globals.css";
+import { description } from "utils/opengraph";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
@@ -18,11 +19,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <Head>
-        <title>Shinobi | Shareable gaming clips</title>
-        <meta
-          name="description"
-          content="Create a shareable gaming clip in 2 steps"
-        />
+        <title>Shinobi - share gaming clips</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {rootPath !== "embed" && <Header />}

@@ -1,3 +1,4 @@
+import { description, site_name } from "utils/opengraph";
 import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 
 const OpenGraph = ({ post }) => {
@@ -6,18 +7,12 @@ const OpenGraph = ({ post }) => {
 
   return (
     <>
-      <meta property="og:site_name" content="Shinobi" />
+      <meta property="og:site_name" content={site_name} />
       <meta property="og:title" content={`${post.title} | Shinobi`} />
       <meta property="og:type" content="video.other" />
       <meta property="og:url" content={_clip_url} />
-
-      {typeof post.clip?.thumbnail === "string" && (
-        <meta property="og:image" content={post.clip.thumbnail} />
-      )}
-      <meta
-        property="og:description"
-        content={`${post.game.name} clip by ${post.posted_by.username}`}
-      />
+      <meta property="og:image" content={post.clip.thumbnail} />
+      <meta property="og:description" content={description} />
       <meta property="og:video" content={_cdn_url} />
       <meta property="og:video:url" content={_cdn_url} />
       <meta property="og:video:secure_url" content={_cdn_url} />

@@ -1,3 +1,4 @@
+import { description, site_name } from "utils/opengraph";
 import { create_clip_url, create_embed_url } from "utils/urls";
 
 const TwitterOG = ({ post }) => {
@@ -7,13 +8,10 @@ const TwitterOG = ({ post }) => {
   return (
     <>
       <meta name="twitter:card" content="player" />
-      <meta name="twitter:site" content="Shinobi" />
+      <meta name="twitter:site" content={site_name} />
       <meta name="twitter:url" content={_clip_url} />
       <meta name="twitter:title" content={`${post.title} | Shinobi`} />
-      <meta
-        name="twitter:description"
-        content={`${post.game.name} clip by ${post.posted_by.username}`}
-      />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={post.clip.thumbnail} />
       <meta name="twitter:player" content={_embed_url} />
       <meta name="twitter:player:stream" content={_cdn_url} />
