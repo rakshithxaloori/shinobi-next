@@ -33,3 +33,5 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 }
 
 export default MyApp;
+
+if (process.NEXT_PUBLIC_CI_CD_STAGE === "production") console.log = () => {};

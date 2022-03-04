@@ -47,6 +47,7 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
         <meta property="og:video:type" content="video/mp4" />
         <meta property="og:video:height" content={post.clip.height} />
         <meta property="og:video:width" content={post.clip.width} />
+        <meta property="og:site_name" content="Shinobi" />
       </Head>
       <div className={styles.post}>
         <div className={styles.meta}>
