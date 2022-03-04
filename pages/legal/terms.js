@@ -8,7 +8,7 @@ import styles from "styles/legal/Legal.module.css";
 const Terms = () => (
   <div className={styles.container}>
     <Head>
-      <title>Terms | Shinobi</title>
+      <title>Terms - Shinobi</title>
     </Head>
     <div className={styles.textBody}>
       <strong>Terms &amp; Conditions</strong>

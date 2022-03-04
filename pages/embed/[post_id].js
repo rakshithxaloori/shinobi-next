@@ -12,7 +12,7 @@ const Embed = ({ post = null, videoOptions = null, error = null }) => {
     <div className={styles.container}>
       <Head>
         <title>
-          {post.title} | {post.game.name} | Shinobi
+          {post.title} - {post.game.name} - Shinobi
         </title>
       </Head>
       {typeof post?.id === "string" ? (

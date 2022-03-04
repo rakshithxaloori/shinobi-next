@@ -8,7 +8,7 @@ import styles from "styles/legal/Legal.module.css";
 const PrivacyPolicy = () => (
   <div className={styles.container}>
     <Head>
-      <title>Privacy Policy | Shinobi</title>
+      <title>Privacy Policy - Shinobi</title>
     </Head>
     <div className={styles.textBody}>
       <strong>Privacy Policy</strong>

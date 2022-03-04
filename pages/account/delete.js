@@ -7,7 +7,7 @@ import styles from "styles/legal/Legal.module.css";
 const Delete = () => (
   <div className={styles.container}>
     <Head>
-      <title>Delete Account | Shinobi</title>
+      <title>Delete Account - Shinobi</title>
     </Head>
     <div className={styles.textBody}>
       <strong>Delete Account</strong>

@@ -18,10 +18,10 @@ const Share = ({ post }) => {
   const { id, title, game, posted_by } = post;
 
   const shinobi_url = create_clip_url(id);
-  const facebook_text = `A ${game.name} clip by ${posted_by.username} | Shinobi`;
+  const facebook_text = `A ${game.name} clip by ${posted_by.username} - Shinobi`;
   const reddit_title = title;
-  const reddit_text = `${posted_by.username} | Shinobi\n${shinobi_url}`;
-  const twitter_text = `${title}\nA ${game.name} clip by ${posted_by.username} | Shinobi\n${shinobi_url}`;
+  const reddit_text = `${posted_by.username} - Shinobi\n${shinobi_url}`;
+  const twitter_text = `${title}\nA ${game.name} clip by ${posted_by.username} - Shinobi\n${shinobi_url}`;
 
   const copyTextToClipboard = async (text) => {
     if ("clipboard" in navigator) {

@@ -25,7 +25,7 @@ const Clip = ({ post = null, videoOptions = null, error = null }) => {
     >
       <Head>
         <title>
-          {post.title} | {post.game.name} | Shinobi
+          {post.title} - {post.game.name} - Shinobi
         </title>
         <meta
           property="fb:app_id"

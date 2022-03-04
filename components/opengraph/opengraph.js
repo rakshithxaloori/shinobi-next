@@ -8,7 +8,7 @@ const OpenGraph = ({ post }) => {
   return (
     <>
       <meta property="og:site_name" content={site_name} />
-      <meta property="og:title" content={`${post.title} | Shinobi`} />
+      <meta property="og:title" content={`${post.title} - Shinobi`} />
       <meta property="og:type" content="video.other" />
       <meta property="og:url" content={_clip_url} />
       <meta property="og:image" content={post.clip.thumbnail} />
