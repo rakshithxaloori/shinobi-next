@@ -1,5 +1,5 @@
 import { description, site_name } from "utils/opengraph";
-import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
+import { clip_cdn_url, create_clip_url } from "utils/urls";
 
 const OpenGraph = ({ post }) => {
   const _clip_url = create_clip_url(post.id);

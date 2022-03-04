@@ -8,7 +8,7 @@ import Share from "components/clip/share";
 import styles from "styles/Clip.module.css";
 
 import { createAPIKit, networkError } from "utils/APIKit";
-import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
+import { clip_cdn_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
 import OpenGraph from "components/opengraph/opengraph";
