@@ -176,6 +176,7 @@ const _twitterMetaTags = (post) => [
   _metaTagObj("twitter:description", description),
   _metaTagObj("twitter:image", post.clip.thumbnail),
   _metaTagObj("twitter:player", create_embed_url(post.id)),
+  _metaTagObj("twitter:player:stream:content_type", "video/mp4"),
   _metaTagObj("twitter:player:width", post.clip.width),
   _metaTagObj("twitter:player:height", post.clip.height),
 ];
