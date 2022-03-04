@@ -1,10 +1,10 @@
 import { description, site_name } from "utils/opengraph";
-import { create_clip_url, create_embed_url } from "utils/urls";
+import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 
 const TwitterOG = ({ post }) => {
   const _clip_url = create_clip_url(post.id);
   const _embed_url = create_embed_url(post.id);
-  const _cdn_url = create_clip_url(post.id);
+  const _cdn_url = clip_cdn_url(post.clip.url);
   return (
     <>
       <meta name="twitter:card" content="player" />

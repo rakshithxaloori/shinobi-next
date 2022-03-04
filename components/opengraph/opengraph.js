@@ -3,7 +3,7 @@ import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 
 const OpenGraph = ({ post }) => {
   const _clip_url = create_clip_url(post.id);
-  const _cdn_url = clip_cdn_url(post.id);
+  const _cdn_url = clip_cdn_url(post.clip.url);
 
   return (
     <>
