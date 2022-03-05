@@ -31,15 +31,11 @@ const Clip = ({
         <title>
           {post.title} - {post.game.name} - Shinobi
         </title>
-        <meta
-          property="fb:app_id"
-          content={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
-        />
         {metaTags &&
-          metaTags.map((metaTag) => (
+          metaTags.map((metaTag, index) => (
             <meta
               property={metaTag.property}
-              key={metaTag.property}
+              key={index}
               content={metaTag.content}
             />
           ))}
@@ -148,23 +144,26 @@ export async function getServerSideProps(context) {
 const _openGraphMetaTags = (post) => {
   const _clip_url = create_clip_url(post.id);
   const _cdn_url = clip_cdn_url(post.clip.url);
+  const _embed_url = create_embed_url(post.id);
+
   return [
     _metaTagObj("og:site_name", site_name),
-    _metaTagObj("og:title", `${post.title} - Shinobi`),
-    _metaTagObj("og:type", "video.other"),
     _metaTagObj("og:url", _clip_url),
+    _metaTagObj("og:title", `${post.title} - Shinobi`),
+    _metaTagObj("og:image", post.clip.thumbnail),
+    _metaTagObj("og:image:width", post.clip.width),
+    _metaTagObj("og:image:height", post.clip.height),
     _metaTagObj("og:description", description),
-    _metaTagObj("og:video", _cdn_url),
+    _metaTagObj("og:type", "video.other"),
     _metaTagObj("og:video:url", _cdn_url),
     _metaTagObj("og:video:secure_url", _cdn_url),
     _metaTagObj("og:video:type", "video/mp4"),
-    _metaTagObj("og:video:height", post.clip.height),
     _metaTagObj("og:video:width", post.clip.width),
-    _metaTagObj("og:image", post.clip.thumbnail),
-    _metaTagObj("og:image:height", post.clip.height),
-    _metaTagObj("og:image:width", post.clip.width),
+    _metaTagObj("og:video:height", post.clip.height),
+    _metaTagObj("video:tag", post.posted_by.username),
     _metaTagObj("video:tag", "Shinobi"),
     _metaTagObj("video:tag", post.game.name),
+    _metaTagObj("fb:app_id", process.env.NEXT_PUBLIC_FACEBOOK_APP_ID),
   ];
 };
 
