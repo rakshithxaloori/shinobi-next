@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile {
+  grid-template-rows: 3fr 2fr;
+  row-gap: 20px;
+}
+
+.web {
+  grid-template-columns: 3fr 2fr;
+  column-gap: 20px;
+}
+
+.upload {
+  display: grid;
+  min-height: 90vh;
+  min-width: 90vw;
+}
+
+.thumbnail {
+  position: relative;
+  width: 60vw;
+}
+
+.image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+}
+
+.warning {
+  color: #ffc107;
+}

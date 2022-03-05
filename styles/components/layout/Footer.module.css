@@ -1,0 +1,50 @@
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.gridRow {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  text-align: left;
+}
+
+.link {
+  color: #fff;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: lightseagreen;
+  transition: 200ms ease-in;
+}
+
+.socialText {
+  margin-left: 10px;
+}
