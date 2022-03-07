@@ -62,12 +62,12 @@ const Share = ({ post }) => {
           className={styles.social}
           iconSize={SOCIALS_ICON_SIZE}
         />
-        <Reddit
+        {/* <Reddit
           title={reddit_title}
           text={reddit_text}
           className={styles.social}
           iconSize={SOCIALS_ICON_SIZE}
-        />
+        /> */}
         <Twitter
           text={twitter_text}
           className={styles.social}
