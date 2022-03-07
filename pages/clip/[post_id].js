@@ -12,6 +12,7 @@ import { clip_cdn_url, create_clip_url, create_embed_url } from "utils/urls";
 import { dateTimeDiff } from "utils/date";
 import getIsMobile from "hooks/dimensions";
 import { description, site_name } from "utils/opengraph";
+import Link from "next/link";
 
 let PROFILE_ICON_SIZE = 50;
 let GAME_ICON_SIZE = 20;
@@ -31,6 +32,7 @@ const Clip = ({
         <title>
           {post.title} - {post.game.name} - Shinobi
         </title>
+        <description></description>
         {metaTags &&
           metaTags.map((metaTag, index) => (
             <meta
@@ -40,6 +42,9 @@ const Clip = ({
             />
           ))}
       </Head>
+      <Link href="/">
+        <a className={styles.create}>Create a sharable gaming clip</a>
+      </Link>
       <div className={styles.post}>
         <div className={styles.meta}>
           <div className={styles.header}>
@@ -151,6 +156,7 @@ const _openGraphMetaTags = (post) => {
     _metaTagObj("og:url", _clip_url),
     _metaTagObj("og:title", `${post.title} - Shinobi`),
     _metaTagObj("og:image", post.clip.thumbnail),
+    _metaTagObj("og:image:url", post.clip.thumbnail),
     _metaTagObj("og:image:width", post.clip.width),
     _metaTagObj("og:image:height", post.clip.height),
     _metaTagObj("og:description", description),
