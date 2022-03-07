@@ -25,7 +25,11 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
         });
         const games = response.data?.payload?.games;
         setGames(games);
+        if (typeof games === "object" && games.length === 0) {
+          setError("Game not found. Shoot us an email to add the game.");
+        }
       } catch (e) {
+        setError("Game not found. Shoot us an email to add the game.");
       } finally {
         setFetching(false);
       }
@@ -48,6 +52,7 @@ const SelectGame = ({ game, setGame, disable, setError }) => {
     setSearchText("");
     setGames([]);
     setShowGames(false);
+    setError("");
   };
 
   return (
