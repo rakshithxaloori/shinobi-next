@@ -253,17 +253,23 @@ const Upload = ({ videoFile, setVideoFile }) => {
               progress < 100 ? (
                 <ProgressBar progress={progress} />
               ) : postId ? (
-                <Share
-                  post={{
-                    id: postId,
-                    title,
-                    game: { name: game.name, logo: game.logo },
-                    posted_by: {
-                      username: session.username,
-                      picture: session.picture,
-                    },
-                  }}
-                />
+                <>
+                  <span>
+                    Like Shinobi? Add us to your bookmarks and share us with
+                    your friends!
+                  </span>
+                  <Share
+                    post={{
+                      id: postId,
+                      title,
+                      game: { name: game.name, logo: game.logo },
+                      posted_by: {
+                        username: session.username,
+                        picture: session.picture,
+                      },
+                    }}
+                  />
+                </>
               ) : (
                 <span>Creating a shareable link...</span>
               )
