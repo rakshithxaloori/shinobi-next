@@ -35,9 +35,7 @@ const Browse = ({ setVideoFile, count, networkE }) => {
     <div className={styles.container}>
       <div className={styles.textSection}>
         <h1 className={styles.title}>Share gaming clips</h1>
-        <h3 className={styles.subtitle}>
-          Upload and get a universal clip link you can share anywhere!
-        </h3>
+        <h3 className={styles.subtitle}>Create a sharable gaming clip</h3>
         {
           <span className={styles.count}>
             {count
